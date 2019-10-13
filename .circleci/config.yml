@@ -3,8 +3,9 @@
 # Check https://circleci.com/docs/2.0/language-python/ for more details
 #
 version: 2.1
-orbs:
-  tester: thekevjames/tester@1.1.2
+#NOT WORKING
+#orbs:
+#  tester: thekevjames/tester@1.1.2
 jobs:
   build:
     docker:
@@ -35,6 +36,7 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
+	    pip install -U pytest
 
       - save_cache:
           paths:
@@ -46,11 +48,11 @@ jobs:
       # other common Python testing frameworks include pytest and nose
       # https://pytest.org
       # https://nose.readthedocs.io
-#      - run:
-#          name: run tests
-#          command: |
-#            . venv/bin/activate
-#            pytest
+      - run:
+          name: run tests
+          command: |
+            . venv/bin/activate
+            pytest
 
       - store_artifacts:
           path: test-reports
