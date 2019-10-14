@@ -16,6 +16,3 @@ def test_with_patch():
     assert mock_requests.get.call_args[0][0] \
             == 'https://python.org/', 'called with right URL'
 
-def test_something():
-    assert 1 == 1
-    
