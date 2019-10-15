@@ -36,7 +36,6 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-            # pip install -U pytest
             pip install tox
 
       - save_cache:
@@ -53,9 +52,11 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            # pytest
             TOXENV=py35,py37 python3 -c 'import tox; tox.cmdline()'
 
       - store_artifacts:
           path: test-reports
           destination: test-reports
+
+      - store_test_results:
+          path: test-reports
